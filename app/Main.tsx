@@ -32,6 +32,13 @@ export default function Home({ posts }) {
                         <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                       </dd>
                     </dl>
+                    {/* {coverImage && (
+                      <div className="xl:col-span-1">
+                        <Link href={`/blog/${slug}`}>
+                          <img src={coverImage} alt={title} className="rounded-md" />
+                        </Link>
+                      </div>
+                    )} */}
                     <div className="space-y-5 xl:col-span-3">
                       <div className="space-y-6">
                         <div>
