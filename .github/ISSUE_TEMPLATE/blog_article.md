@@ -1,5 +1,5 @@
 ---
-name: Plan for articles
+name: 🧠 Plan for articles
 about: Plan for the articles in the future
 title: ''
 labels: ''
