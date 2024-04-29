@@ -11,7 +11,11 @@ const Header = () => {
   return (
     <header className="flex items-center justify-between py-10">
       <div>
-        <Link href="/" aria-label={siteMetadata.headerTitle}>
+        <Link
+          href="/"
+          aria-label={siteMetadata.headerTitle}
+          className="text-black transition-all duration-100 hover:text-primary-500 dark:text-white dark:hover:text-primary-300"
+        >
           <div className="flex items-center justify-between">
             <div className="mr-3">
               <Image
@@ -40,7 +44,7 @@ const Header = () => {
             <Link
               key={link.title}
               href={link.href}
-              className="hidden font-medium text-gray-900 dark:text-gray-100 sm:block"
+              className="hidden font-medium text-black transition-all duration-100 hover:text-primary-500 dark:text-white dark:hover:text-primary-300 sm:block"
             >
               {link.title}
             </Link>
