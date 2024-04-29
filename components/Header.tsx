@@ -14,7 +14,7 @@ const Header = () => {
         <Link
           href="/"
           aria-label={siteMetadata.headerTitle}
-          className="transition-all duration-100 hover:text-primary-500 dark:hover:text-primary-300"
+          className="text-black transition-all duration-100 hover:text-primary-500 dark:text-white dark:hover:text-primary-300"
         >
           <div className="flex items-center justify-between">
             <div className="mr-3">
@@ -44,7 +44,7 @@ const Header = () => {
             <Link
               key={link.title}
               href={link.href}
-              className="hidden font-medium transition-all duration-100 hover:text-primary-500 dark:hover:text-primary-300 sm:block"
+              className="hidden font-medium text-black transition-all duration-100 hover:text-primary-500 dark:text-white dark:hover:text-primary-300 sm:block"
             >
               {link.title}
             </Link>
