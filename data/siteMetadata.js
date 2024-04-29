@@ -6,7 +6,7 @@ const siteMetadata = {
   description: 'A blog recording my journey to become a better person',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
+  siteUrl: 'https://blog.arealclimber.me',
   siteRepo: 'https://github.com/arealclimber/pnp-blog',
   siteLogo: '/static/images/logo.png',
   // socialBanner: '/static/images/twitter-card.png',
