@@ -1,1 +1,10 @@
-{"區塊鏈":1,"挖礦":1,"商業模式":1,"初學者友善":1}
+{
+  "blockchain": 1,
+  "mining": 1,
+  "business-model": 1,
+  "beginner-friendly": 2,
+  "backend": 1,
+  "nestjs": 1,
+  "beginner": 1,
+  "vpn": 1
+}

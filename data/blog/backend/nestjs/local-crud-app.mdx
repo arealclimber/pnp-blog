@@ -1,0 +1,73 @@
+---
+title: 在本地運行基本 Nest.js CRUD app （沒有 DB）
+date: '2024-05-12'
+tags: ['backend', 'nest.js', 'beginner']
+draft: true
+summary: 透過 Nest.js CLI 從零建立一個 web app，包含基本 CRUD 功能
+---
+
+# 前置作業
+
+- 確保已經安裝 node.js 跟 npm 之後，安裝 Nest CLI
+  - `npm i -g @nestjs/cli`
+- 使用 Nest CLI 創建新專案，這邊使用 `npm` 來建立
+  - `nest new <PROJECT_NAME>`
+- Nest.js 使用模組(module)、控制器(controller)、服務(service)的概念來組織程式碼，可透過 CLI 生成基礎 CRUD 架構
+  - `nest generate resource items`
+  - 會詢問要產生哪種架構，選擇 REST API
+    ![Screenshot 2024-05-12 at 23.38.32.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f9f2d30a-5666-40ca-a2c3-6a4c6eee4ad0/6a3e0c66-41dc-4dc5-8674-ca10ad4a42c8/Screenshot_2024-05-12_at_23.38.32.png)
+  - 之後會在專案產生以下檔案跟資料夾
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f9f2d30a-5666-40ca-a2c3-6a4c6eee4ad0/e716744c-84fb-4f04-9f54-80e6e632c234/Untitled.png)
+
+# code 解析
+
+## module
+
+## controller
+
+## service
+
+## entity
+
+### 安裝 dependency
+
+- `npm install --save @nestjs/typeorm typeorm pg`
+- 需要 `typeorm` 來規定 entity
+
+# CRUD 成果
+
+- 刪除編譯檔
+  - `rm -rf dist`
+- 編譯專案
+  - `npm run build`
+- 執行編譯檔
+  - `npm run start`
+
+在網頁網址列輸入 http://localhost:3000/items ，應該可以看到回傳 `[]`
+
+## POST 寫入資料
+
+- 在 Postman 上選擇 `POST`，URL 為 [`http://localhost:3000/items`](http://localhost:3000/items/2)，依照 `src/items/items.service.ts` 的 `create()` 原則給定 Body，然後按下 Send
+  ![Screenshot 2024-05-12 at 23.33.53.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f9f2d30a-5666-40ca-a2c3-6a4c6eee4ad0/38424c23-58e1-46f7-b6a2-dd0eb69bff09/Screenshot_2024-05-12_at_23.33.53.png)
+
+## GET 讀取所有資料
+
+- 在 Postman 上選擇 GET，URL 為 [`http://localhost:3000/items`](http://localhost:3000/items/2)，會自動回傳所有 items
+  ![Screenshot 2024-05-12 at 23.34.00.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f9f2d30a-5666-40ca-a2c3-6a4c6eee4ad0/b81352fd-f715-4d3c-8674-6fa999e77f95/Screenshot_2024-05-12_at_23.34.00.png)
+
+## GET 讀取單一資料
+
+- 在 Postman 上選擇 GET，URL 為 [`http://localhost:3000/items/2`](http://localhost:3000/items/2)，查詢 id=2 的資料
+  ![Screenshot 2024-05-12 at 23.34.08.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f9f2d30a-5666-40ca-a2c3-6a4c6eee4ad0/4ecc2616-5728-4f73-84fb-66953dfcff88/Screenshot_2024-05-12_at_23.34.08.png)
+
+## PUT 更改資料
+
+- 在 Postman 上選擇 PUT，並且給定 Body 資料，修改目標為 id=2 的資料，所以URL 為 [`http://localhost:3000/items/2`](http://localhost:3000/items/2)
+  ![Screenshot 2024-05-12 at 23.35.32.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f9f2d30a-5666-40ca-a2c3-6a4c6eee4ad0/d22aaf3a-bc75-4ee1-b113-babb4f2fa1c8/Screenshot_2024-05-12_at_23.35.32.png)
+
+## DELETE 刪除資料
+
+- http://localhost:3000/items/1 在 Postman 上選擇 `DELETE`
+- 把 id=1 刪掉之後，使用 `GET http://localhost:3000/items` 確認只剩下 id=2 資料
+  ![Screenshot 2024-05-12 at 23.36.02.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f9f2d30a-5666-40ca-a2c3-6a4c6eee4ad0/4f6a3a1a-93f2-43ca-af0b-582ac77e63f1/Screenshot_2024-05-12_at_23.36.02.png)
+  ![Screenshot 2024-05-12 at 23.36.08.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f9f2d30a-5666-40ca-a2c3-6a4c6eee4ad0/9991814d-3f96-4049-81dd-6f8ad5d0225a/Screenshot_2024-05-12_at_23.36.08.png)
