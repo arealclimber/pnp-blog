@@ -1,13 +1,13 @@
 {
-  "backend": 2,
-  "algorithm": 1,
-  "beginner-friendly": 4,
   "mac": 1,
   "setup": 1,
   "tools": 1,
-  "nestjs": 1,
-  "vpn": 1,
   "blockchain": 1,
   "mining": 1,
-  "business-model": 1
+  "business-model": 1,
+  "beginner-friendly": 4,
+  "backend": 2,
+  "algorithm": 1,
+  "nestjs": 1,
+  "vpn": 1
 }
