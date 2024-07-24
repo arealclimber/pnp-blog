@@ -13,11 +13,11 @@ const siteMetadata = {
   // mastodon: 'https://mastodon.social/@mastodonuser',
   // email: 'address@yoursite.com',
   // github: 'https://github.com',
-  // twitter: 'https://twitter.com/Twitter',
+  twitter: 'https://x.com/arealclimber',
   // facebook: 'https://facebook.com',
   // youtube: 'https://youtube.com',
   // linkedin: 'https://www.linkedin.com',
-  // threads: 'https://www.threads.net',
+  threads: 'https://www.threads.net/@l.earnc',
   // instagram: 'https://www.instagram.com',
   locale: 'en-US',
   analytics: {
@@ -45,7 +45,7 @@ const siteMetadata = {
   newsletter: {
     // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
     // Please add your .env file and modify it according to your selection
-    // provider: 'buttondown',
+    provider: 'buttondown',
   },
   comments: {
     // If you want to use an analytics provider you have to add it to the
