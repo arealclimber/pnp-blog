@@ -4,7 +4,7 @@ const siteMetadata = {
   author: 'Shirley',
   headerTitle: 'Progress, not Perfection',
   description: 'Live it like you dream it',
-  language: 'en-us',
+  language: 'zh-tw',
   theme: 'system', // system, dark or light
   siteUrl: 'https://blog.arealclimber.me',
   siteRepo: 'https://github.com/arealclimber/pnp-blog',
@@ -19,7 +19,7 @@ const siteMetadata = {
   // linkedin: 'https://www.linkedin.com',
   threads: 'https://www.threads.net/@l.earnc',
   // instagram: 'https://www.instagram.com',
-  locale: 'en-US',
+  locale: 'zh-TW',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
@@ -45,7 +45,7 @@ const siteMetadata = {
   newsletter: {
     // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
     // Please add your .env file and modify it according to your selection
-    provider: 'buttondown',
+    // provider: 'buttondown',
   },
   comments: {
     // If you want to use an analytics provider you have to add it to the
@@ -74,7 +74,7 @@ const siteMetadata = {
       // example: https://giscus.app/themes/custom_example.css
       themeURL: '',
       // This corresponds to the `data-lang="en"` in giscus's configurations
-      lang: 'en',
+      lang: 'zh',
     },
   },
   search: {

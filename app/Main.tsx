@@ -70,7 +70,7 @@ export default function Home({ posts }) {
                           className="text-primary-500 hover:text-primary-600 dark:text-primary-300 dark:hover:text-primary-400"
                           aria-label={`Read more: "${title}"`}
                         >
-                          Read more &rarr;
+                          閱讀更多 &rarr;
                         </Link>
                       </div>
                     </div>
@@ -88,7 +88,7 @@ export default function Home({ posts }) {
             className="text-primary-500 hover:text-primary-600 dark:text-primary-300 dark:hover:text-primary-400"
             aria-label="All posts"
           >
-            All Posts &rarr;
+            所有文章 &rarr;
           </Link>
         </div>
       )}
