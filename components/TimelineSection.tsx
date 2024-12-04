@@ -5,7 +5,7 @@ import React from 'react'
 const TimelineSection = () => {
   return (
     <div className="">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-0 mt-20">
         <div className="mb-8 flex flex-col space-y-2">
           <h1 className="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
             Receipts

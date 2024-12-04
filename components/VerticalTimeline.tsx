@@ -18,7 +18,7 @@ export function VerticalTimeline({ items }: VerticalTimelineProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   return (
-    <div className="relative mx-auto max-w-2xl">
+    <div className="relative mx-0 lg:mx-2">
       <div className="absolute left-1/2 h-full w-0.5 -translate-x-1/2 transform bg-gray-200"></div>
       {items.map((item, index) => (
         <div
