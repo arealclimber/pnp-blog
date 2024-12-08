@@ -1,0 +1,95 @@
+---
+title: Build Time (Compile Time) vs Run Time
+date: '2024-12-08'
+tags: ['english', 'backend', 'frontend', 'beginner friendly', 'software engineering']
+draft: false
+summary: Answer the question "What's build time and runtime" from perspectives of frontend quickly
+---
+
+# Definitions
+
+## Build Time
+
+Refers to the phase before the program is executed, during which the source code is compiled, bundled, or transformed into a form that can be executed. The purpose of this phase is to prepare the code for execution, such as compiling it into machine code or transforming it into browser-compatible JavaScript.
+
+Key tasks include:
+
+- Compilation
+- Minification
+- Code splitting
+- Resource optimization (e.g., images, CSS)
+
+## Run Time
+
+Refers to the phase when the program is actually executed, meaning when the user interacts with the application. At this stage, the built artifacts are loaded and executed in the target environment (e.g., a browser or a server).
+
+Key tasks include:
+
+- Loading and executing built code
+- Dynamic logic handling
+- Database queries and API requests
+
+# Common Examples
+
+## Build Time
+
+Compiled languages (e.g., C++): Code is compiled into machine code (using tools like GCC).
+JavaScript: Using Webpack or Vite to transpile ES6+ into browser-compatible JavaScript.
+CSS: Preprocessing with tools like Sass or PostCSS.
+
+## Run Time
+
+Program logic execution: For example, rendering and event handling in a React application.
+Server execution: For instance, a Node.js server handling HTTP requests and returning responses.
+Dynamic operations: A user clicks a button, the program processes the event, and the interface updates.
+
+# JavaScript-Specific Examples
+
+## Build Time
+
+Transpiling ES6/ESNext syntax to ES5 using Babel:
+
+```js
+const greet = () => console.log('Hello')
+```
+
+After Babel transformation:
+
+```js
+var greet = function () {
+  console.log('Hello')
+}
+```
+
+Bundling multiple modules into a single file using Webpack or Vite:
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+ReactDOM.render(<h1>Hello</h1>, document.getElementById('root'))
+```
+
+## Run Time
+
+User interaction on a webpage:
+Clicking the button triggers the execution of this JavaScript logic in the browser.
+
+```js
+document.getElementById('button').addEventListener('click', () => {
+  alert('Button clicked!')
+})
+```
+
+Dynamic module loading:
+The module is loaded only during the execution of the application.
+
+```js
+import('some-module').then((module) => {
+  module.doSomething()
+})
+```
+
+# Summary
+
+- Build Time is the phase where the program is "prepared" for execution, transforming it into an efficient executable form.
+- Run Time is when the program is fully prepared and interacts with the environment and the user.
