@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Progress, not Perfection',
   author: 'Shirley',
   headerTitle: 'Progress, not Perfection',
-  description: 'Live it like you dream it',
+  description: '思想試驗場',
   language: 'zh-tw',
   theme: 'system', // system, dark or light
   siteUrl: 'https://blog.arealclimber.me',
