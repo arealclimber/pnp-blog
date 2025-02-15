@@ -32,7 +32,7 @@ const projectsData: Project[] = [
   },
   {
     title: 'TideBit DeFi',
-    description: `Lead the frontend development of a Crypto DeFi platform.`,
+    description: `Initiated the development of a Crypto DeFi platform.`,
     // imgSrc: '/static/images/tidebit-defi.svg',
     href: 'https://tidebit-defi.com',
   },
