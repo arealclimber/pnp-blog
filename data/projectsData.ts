@@ -36,6 +36,18 @@ const projectsData: Project[] = [
     // imgSrc: '/static/images/tidebit-defi.svg',
     href: 'https://tidebit-defi.com',
   },
+  {
+    title: 'NFT Marketplace',
+    description: `A NFT Marketplace to buy and sell NFTs.`,
+    // imgSrc: '/static/images/default-project.jpeg',
+    // href: '',
+  },
+  {
+    title: 'NFT Minting Dapp',
+    description: `A NFT Minting Dapp to mint certain collections of NFTs.`,
+    // imgSrc: '/static/images/default-project.jpeg',
+    // href: '',
+  },
   // {
   //   title: 'A Search Engine',
   //   description: `What if you could look up any information in the world? Webpages, images, videos
