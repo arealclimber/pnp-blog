@@ -24,7 +24,10 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install @octokit/rest gray-matter
+        run: |
+          npm install @octokit/rest gray-matter dotenv
+          # 添加 type: module 到 package.json
+          npm pkg set type=module
 
       - name: Convert Issue to MDX
         env:

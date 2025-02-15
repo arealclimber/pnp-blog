@@ -1,12 +1,18 @@
-const { Octokit } = require('@octokit/rest')
-const matter = require('gray-matter')
-const fs = require('fs')
-const path = require('path')
+import { Octokit } from '@octokit/rest'
+import matter from 'gray-matter'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import dotenv from 'dotenv'
 
 // 如果是本地開發環境，載入 .env
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
+  dotenv.config()
 }
+
+// 在 ESM 中獲取 __dirname
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
