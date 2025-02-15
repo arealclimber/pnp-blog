@@ -5,7 +5,7 @@ const siteMetadata = {
   headerTitle: 'Progress, not Perfection',
   description: '思想試驗場',
   language: 'zh-tw',
-  theme: 'system', // system, dark or light
+  theme: 'dark', // system, dark or light
   siteUrl: 'https://blog.arealclimber.me',
   siteRepo: 'https://github.com/arealclimber/pnp-blog',
   siteLogo: '/static/images/logo.png',

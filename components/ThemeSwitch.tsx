@@ -60,7 +60,7 @@ const ThemeSwitch = () => {
     <div className="mr-5">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <button onClick={toggleTheme}>{resolvedTheme === 'dark' ? <Moon /> : <Sun />}</button>
+          <button onClick={toggleTheme}>{resolvedTheme !== 'light' ? <Moon /> : <Sun />}</button>
           {/* Hide the toggle menu button */}
           {/* <Menu.Button>{resolvedTheme === 'dark' ? <Moon /> : <Sun />}</Menu.Button> */}
         </div>
