@@ -1,3 +1,4 @@
+import { formatDate } from 'pliny/utils/formatDate'
 import { ReactNode } from 'react'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog, Authors } from 'contentlayer/generated'
@@ -30,7 +31,7 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags, readingTime } = content
+  const { filePath, path, slug, date, title, tags, readingTime, lastmod } = content
   console.log('content in PostLayout', content)
   const basePath = path.split('/')[0]
 
@@ -43,12 +44,21 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             <div className="space-y-3 text-center">
               <dl className="space-y-10">
                 <div>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>
-                      {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
-                    </time>
+                  <dt className="sr-only">發布於</dt>
+                  <dd
+                    className={`${lastmod ? 'text-xs' : 'text-base'} font-medium leading-6 text-gray-500 dark:text-gray-400`}
+                  >
+                    <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                   </dd>
+                  {lastmod && (
+                    <>
+                      <dt className="sr-only">Last Modified</dt>
+                      <dd className="ml-4 text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        Last Modified:{' '}
+                        <time dateTime={lastmod}>{formatDate(lastmod, siteMetadata.locale)}</time>
+                      </dd>
+                    </>
+                  )}
                 </div>
               </dl>
               <div>
