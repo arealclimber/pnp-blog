@@ -29,6 +29,7 @@ jobs:
       - name: Convert Issue to MDX
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: node .github/scripts/convert-issue.js
 
       - name: Commit and Push

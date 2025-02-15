@@ -3,15 +3,30 @@ const matter = require('gray-matter')
 const fs = require('fs')
 const path = require('path')
 
+// 如果是本地開發環境，載入 .env
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
 })
 
 async function main() {
+  if (!process.env.GITHUB_TOKEN) {
+    throw new Error('GITHUB_TOKEN is required')
+  }
+
+  if (!process.env.GITHUB_CONTEXT) {
+    throw new Error('GITHUB_CONTEXT is required')
+  }
+
   // 使用 GitHub API 獲取 issue 內容
-  const context = JSON.parse(process.env.GITHUB_CONTEXT || '{}')
-  const { owner, repo } = context.repository || {}
+  const context = JSON.parse(process.env.GITHUB_CONTEXT)
+  const { owner, repo } = context.repository
   const issueNumber = context.event.issue.number
+
+  console.log(`Processing issue #${issueNumber} from ${owner}/${repo}`)
 
   const { data: issue } = await octokit.issues.get({
     owner,
