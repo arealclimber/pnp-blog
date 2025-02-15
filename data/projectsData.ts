@@ -6,6 +6,12 @@ interface Project {
 }
 
 const projectsData: Project[] = [
+  {
+    title: 'TideBit DeFi',
+    description: `TideBit is a DeFi platform that allows you to earn interest on your crypto.`,
+    imgSrc: '/static/images/tidebit-defi.svg',
+    href: 'https://tidebit-defi.com',
+  },
   // {
   //   title: 'A Search Engine',
   //   description: `What if you could look up any information in the world? Webpages, images, videos
