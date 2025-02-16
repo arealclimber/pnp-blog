@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Cera';
+  src: url('/fonts/Cera Pro Medium.otf');
+  font-weight: 300;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Cera', sans-serif;
+}
