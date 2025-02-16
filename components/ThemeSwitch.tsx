@@ -52,6 +52,15 @@ const ThemeSwitch = () => {
   // When mounted on client, now we can show the UI
   useEffect(() => setMounted(true), [])
 
+  // If not mounted, return a default icon to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="mr-5">
+        <div className="h-6 w-6" />
+      </div>
+    )
+  }
+
   const toggleTheme = () => {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
   }
@@ -60,7 +69,7 @@ const ThemeSwitch = () => {
     <div className="mr-5">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <button onClick={toggleTheme}>{resolvedTheme !== 'light' ? <Moon /> : <Sun />}</button>
+          <button onClick={toggleTheme}>{resolvedTheme === 'dark' ? <Moon /> : <Sun />}</button>
           {/* Hide the toggle menu button */}
           {/* <Menu.Button>{resolvedTheme === 'dark' ? <Moon /> : <Sun />}</Menu.Button> */}
         </div>
