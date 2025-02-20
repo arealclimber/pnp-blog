@@ -1,4 +1,5 @@
 import TimelineSection from '@/components/TimelineSection'
+import Link from 'next/link'
 import React from 'react'
 
 const Page = () => {
@@ -14,6 +15,17 @@ const Page = () => {
           <div className="flex flex-col space-y-2 pt-8 text-start">
             <p>Record my experiences to look back and see how far I've come.</p>
             <p>Whether stressful or joyful, they shape who I am.</p>
+            <div className="flex space-x-2">
+              <p>And I'm glad to share them with you.</p>
+            </div>
+            <div>
+              {' '}
+              <Link href="/projects" className="inline-block">
+                <p className="text-red-700 underline underline-offset-4 hover:opacity-80 dark:text-red-400">
+                  Projects
+                </p>
+              </Link>
+            </div>
           </div>
           <div className="mt-10">
             <TimelineSection />
