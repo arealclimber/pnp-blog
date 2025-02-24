@@ -8,6 +8,10 @@ const timelineItems = [
     action: 'Gained a chance to become the backend developer in the company',
   },
   {
+    date: '2024/08/13-08/26',
+    action: 'Took part in the AI online cohort conducted in English',
+  },
+  {
     date: '2024/06/19',
     action: 'Participated in the preliminary presentation for the AIGO',
   },
