@@ -14,9 +14,8 @@ interface FloatingTOCProps {
 export default function FloatingTOC({ toc }: FloatingTOCProps) {
   const [isCollapsed, setIsCollapsed] = useState(false)
 
-  // 在 client side 判斷偵測螢幕寬度
   useEffect(() => {
-    // 使用 768px 為行動裝置斷點
+    // If the screen width is less than 768px, collapse the TOC by default
     if (window.innerWidth < 768) {
       setIsCollapsed(true)
     }
@@ -81,7 +80,7 @@ export default function FloatingTOC({ toc }: FloatingTOCProps) {
         {!isCollapsed && (
           <ul className="ml-2 list-disc pl-2 text-gray-800 dark:text-gray-300">
             {toc.map((item) => {
-              // 若 url 尾端符合 -數字（例如 -4），則移除
+              // If the url ends with a number (e.g. -4), remove it
               const cleanedUrl = item.url.replace(/-\d+$/, '')
               return (
                 <li
