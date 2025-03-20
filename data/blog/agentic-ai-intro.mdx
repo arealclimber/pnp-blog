@@ -1,0 +1,235 @@
+---
+title: 'A First Look at AI Agent, Agentic AI, and MCP'
+date: '2025-03-20'
+tags: ['english', 'ai', 'software engineering']
+draft: false
+summary: 'This article begins with the fundamentals of AI Agents, illustrates Agentic AI’s autonomous decision-making and various workflows, uses MCP’s standardized protocol to explore integrating external tools and resources, and ultimately provides engineers with practical insights on applying these technologies in complex scenarios'
+---
+
+# Introduction
+
+AI technologies have been progressing at a remarkable pace, and at the same time, new concepts are emerging rapidly. Among these, AI Agent, Agentic AI, and MCP (Model Context Protocol) have drawn particular attention. These three are not just separate buzzwords; they complement one another so that AI can interact more flexibly with external environments in complex tasks. This article explores the ideas and distinctions between AI Agent and Agentic AI, then delves into how the standardized MCP specification can be integrated to enhance connections between AI and external tools.
+
+Basic Concepts and Theoretical Foundations of AI Agent
+
+An AI Agent is an AI entity that, within defined rules and an environment, can make decisions based on the information it receives and perform specific tasks. The level of autonomy is generally determined by its designer, who emphasizes precise, controllable, and repetitive work within predictable bounds. A customer service chatbot is a relatively simple example: faced with user queries, the agent looks up the best response from its knowledge base or built-in rules, quickly and consistently answering common questions.
+
+At a theoretical level, an AI Agent can be viewed as carrying out a sense–decide–act loop. It first senses external inputs (such as user queries or environmental states), then responds based on some pre-trained strategy or rule, finally returning the output (which may be text, a control command, or a tool call) to an external system. In many single-task scenarios, this execution pattern can deliver high efficiency and predictable results.
+
+AI Agents produce effects similar to workflow automation platforms like n8n or Make, where humans define the treatment process for different conditions in advance, and the AI follows predefined steps to complete tasks.
+
+Below is an example of an automated workflow that uses AI to analyze whether a GitHub PR has security vulnerabilities (ref: [n8n](https://n8n.io/)).
+
+![image](https://github.com/user-attachments/assets/24cc3895-efbb-49fa-9ad8-c6cf75cce2d4)
+(Reference: [Anthropic](https://www.anthropic.com/engineering/building-effective-agents) )
+
+# Advanced Meanings of Agentic AI
+
+While an AI Agent focuses on accomplishing well-defined tasks, Agentic AI emphasizes autonomy and self-directed decision-making. Agentic AI relies on a see–think–act cycle, observing its environment more comprehensively, trying different paths, and making iterative adjustments based on actual outcomes. If an AI Agent is more like a reactive executor on standby, then Agentic AI is more like a planner that actively explores.
+
+In practice, Agentic AI often involves multiple iterations, parallel processes, and the ability to call external tools. For instance, when generating code or translating documents, Agentic AI might allocate multiple sub-agents to work on different segments in parallel, then integrate their partial results into a final output. Or, in the face of a complex problem, it can devise an adjustable plan and optimize it through multiple attempts. This process can resemble human problem-solving strategies in certain constrained situations, forming the basis of current AI systems that exhibit a higher level of self-direction.
+
+![image](https://github.com/user-attachments/assets/8d5118d7-4df0-4e57-8ff0-e25a8912f475)
+(Reference: [Anthropic](https://www.anthropic.com/engineering/building-effective-agents) )
+
+## Comparison: AI Agent vs Agentic AI
+
+| Aspect                  | AI Agent                                                                                                                                                  | Agentic AI                                                                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Autonomy                | Low: executes defined tasks within bounded areas, requires clear instructions.                                                                            | High: capable of planning, deciding, and executing multi-step tasks without constant human intervention.                         |
+| Decision-Making         | Rule-Based: follows pre-programmed rules or decision trees, resulting in predictable behavior.                                                            | Advanced: uses more complex reasoning and predictive models to assess multiple variables and future conditions.                  |
+| Learning Capability     | Limited: although some agents use machine learning for performance gains, it is typically limited to a specific task.                                     | Continuous: improves performance over time through mechanisms like reinforcement learning.                                       |
+| Task Complexity         | Task-Specific: excels at narrowly focused tasks.                                                                                                          | Complex Task Management: can handle coordinating multiple tasks and integrating data from diverse sources.                       |
+| Operation               | Passive: usually acts only when triggered by clear inputs.                                                                                                | Proactive: pursues long-term objectives and makes decisions based on an overall understanding of the environment.                |
+| Real-World Applications | Straightforward contexts, including simple customer service chatbots, scheduling assistants, data processing tools, email managers, and code suggestions. | More complex contexts, such as self-driving vehicles, financial trading systems, medical diagnosis, and supply chain management. |
+
+# Agentic AI System Patterns
+
+(Adapted from [Anthropic](https://www.anthropic.com/engineering/building-effective-agents)'s perspective)
+
+## Augmented LLM
+
+An Agentic system is often built using an LLM that is augmented with retrieval capabilities, external tools, and memory. By generating its own search queries, selecting appropriate tools, and deciding which information to retain, the system aims to reduce hallucinations and improve reliability.
+
+![image 2](https://github.com/user-attachments/assets/9e4f26cb-721e-4303-b7f5-271f3a1fe549)
+
+(Reference image from [Anthropic](https://www.anthropic.com/engineering/building-effective-agents))
+
+## Prompt Chaining
+
+Prompt chaining breaks a task into a series of steps, where each LLM call processes the output from the previous one. At any intermediate step, programmatic checks (gates) can be inserted to ensure the flow stays on track.
+
+Prompt chaining is best when the task can be decomposed into a fixed sequence of simpler subtasks, improving accuracy by keeping each LLM call more manageable. An example might be generating marketing copy and then translating it into multiple languages, or writing a document outline, verifying it meets certain standards, and then writing the final text based on that outline.
+
+![image 3](https://github.com/user-attachments/assets/137edeb2-40ee-4dcd-b9c0-8e328867c873)
+
+(Reference image from [Anthropic](https://www.anthropic.com/engineering/building-effective-agents))
+
+## Routing
+
+In a routing workflow, inputs are classified and then directed to specific downstream tasks. This approach separates concerns and allows specialized prompts.
+
+Routing is suitable when different parts of a complex task can be more effectively handled by different processes, and the classification itself can be done accurately. For instance, customer service queries might be grouped into normal inquiries, refund requests, and technical support, each routed to a separate specialized workflow. Or, simple and common requests are handled by a smaller model, while the harder, rarer queries are directed to a more powerful model to optimize cost and speed.
+
+![image 4](https://github.com/user-attachments/assets/be88a099-1976-4be0-8e92-a363ceac67aa)
+
+(Reference image from [Anthropic](https://www.anthropic.com/engineering/building-effective-agents))
+
+Parallelization
+
+Parallelization allows a large language model (LLM) to handle different portions of a task at the same time or run the same task multiple times to get diverse results, after which these results are combined through a programmatic approach. There are two main variants:
+
+• Sectioning: dividing a task into separate subtasks executed in parallel.  
+• Voting: running the same task multiple times to get differing outputs.
+
+Parallelization is particularly helpful when parallelizing subtasks can enhance throughput or when multiple perspectives or attempts produce higher-confidence results.
+
+Consider, for example:  
+• Checking user queries for unsafe requests while also generating answers. One model instance handles the user query, another checks for inappropriate content, and an automated analysis consolidates model performance.  
+• Evaluating whether certain content is inappropriate by running multiple prompts in parallel, each focusing on a specific category of disallowed content. Combined voting thresholds help strike a balance between false positives and false negatives.
+
+![image 5](https://github.com/user-attachments/assets/0b95e868-6446-422b-8f42-f0b6fbd2581b)
+
+(Reference image from [Anthropic](https://www.anthropic.com/engineering/building-effective-agents))
+
+Orchestrator-Workers
+
+The Orchestrator is a central LLM that dynamically breaks down complex tasks, deciding which subtasks are needed to achieve the overall goal. The Workers are LLMs responsible for handling these specific subtasks. Once Workers have completed their tasks, results go back to the Orchestrator, which integrates them and decides the next steps.
+
+The key is the Orchestrator’s dynamic decision-making. Unlike parallelization, subtasks here are determined on the fly based on actual inputs and progress.
+
+A common example involves search tasks that gather and analyze information from multiple sources. The Orchestrator LLM receives a complex search query (for instance, a comprehensive deep dive on a topic), then plans a search strategy to query various data sources. Each Worker is assigned to gather data from one source, and the Orchestrator then aggregates everything to produce the final answer.
+
+![image 6](https://github.com/user-attachments/assets/13d66b71-c91d-4ae1-ab03-1af9c9fd2c20)
+
+(Reference image from [Anthropic](https://www.anthropic.com/engineering/building-effective-agents))
+
+Evaluator-Optimizer
+
+In an Evaluator-Optimizer workflow, one LLM call generates responses while another LLM provides iterative evaluation and feedback. Specifically:
+
+• The Evaluator is an LLM that assesses the Optimizer’s output and provides feedback based on predefined evaluation criteria.  
+• The Optimizer is an LLM that generates the initial solution, then incorporates feedback from the Evaluator to refine the output in repeated cycles.
+
+This workflow is iterative. The Optimizer creates an initial response, the Evaluator reviews and critiques it, and the Optimizer uses that feedback to improve. It continues until the response meets acceptable standards or until a stop condition is reached.
+
+An example is literary translation, where the first pass might miss subtle nuances, and the Evaluator can call attention to them. Another is a multi-round search, where the Evaluator decides when to keep searching because the existing answer lacks adequate coverage of the topic.
+
+![image 7](https://github.com/user-attachments/assets/3c381ed3-2e21-43b9-b256-fab3dfae645c)
+
+(Reference image from [Anthropic](https://www.anthropic.com/engineering/building-effective-agents))
+
+## Comparison Table for Complex Search Tasks
+
+| Feature                 | Orchestrator-Workers                                                                  | Evaluator-Optimizer                                                                          |
+| ----------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Core Strategy           | Gathering and integrating information from multiple sources in parallel               | Iterative refinement of search results through evaluation and optimization                   |
+| Task Decomposition      | Dynamically split into subtasks targeting specific data sources by the Orchestrator   | The Optimizer performs initial search, and the Evaluator decides if more searches are needed |
+| Information Integration | Orchestrator integrates results from different Workers                                | Optimizer integrates new information in each iteration                                       |
+| Iteration               | Less emphasis on iteration, more on a one-shot parallel collection                    | Iteration is central, repeated refinement is the core mechanism                              |
+| Use Case Suitability    | Complex queries requiring broad coverage from multiple sources                        | Complex queries requiring a deeper, gradually improved understanding                         |
+| Potential Outcome       | Faster coverage of multiple sources but depends on Orchestrator’s consolidation skill | More in-depth exploration but may demand more iterations to finalize                         |
+
+In summary, Orchestrator-Workers is like assigning a team to gather information from different locations and then having a leader**(the Orchestrator)** consolidate the findings. Evaluator-Optimizer is like a researcher (the Optimizer) doing an initial study, then a rigorous reviewer (the Evaluator) pointing out flaws or missing pieces, and the researcher refining based on that critique. The choice depends on whether the priority is broader coverage or deeper iterative exploration.
+
+# Origin and Core Spirit of MCP (Model Context Protocol)
+
+Refer to the specification at Model Context Protocol spec.
+
+When AI behavior involves the external world—such as reading information online, calling various external services, or performing cross-platform tasks via APIs—a more explicit and standardized interface is needed to make it easier for Autonomous Agents to call and integrate external resources. MCP (Model Context Protocol) was designed along these lines.
+
+Its goal is to define a universal protocol that allows any model to invoke external tools or resources through a common adapter. In principle, MCP is comparable to a traditional function calling pattern, where a function interface, input parameters, and output format must be pre-defined. However, MCP tries to define a much broader and more consistent standard, so developers do not have to rebuild API integrations for every application. Meanwhile, Agentic AI can quickly tap the wide range of features offered by external providers and developers, including cloud computing services, database queries, or opening GitHub Pull Requests.
+
+MCP and standard function calling differ similarly to how Type-C cables differ from a proprietary Lightning connector. Unified standards can boost development efficiency and reduce the friction of calling external tools in AI workflows.
+
+## Typical Application Examples
+
+In a customer service chatbot, Agentic AI might identify user intent, then use MCP to connect to a backend CRM or inventory system, retrieve order history or availability, and automatically process refunds or check order status. This shortens response times and boosts customer satisfaction.
+
+For code automation, an Agentic AI could handle multiple file edits in one go, then rely on the results of unit tests or lint checks to automatically fix the code. If developers want the changes pushed to a remote repository, the system can invoke MCP to create a GitHub Pull Request, substantially reducing laborious manual steps.
+
+# Interactions and Technical Integration of the Three
+
+The key to combining AI Agent, Agentic AI, and MCP lies in an extensible, standardized way to interact. On a basic level, an AI Agent calling external tools via MCP is already a straightforward scenario. But when an Agentic AI needs multi-round reasoning, deciding which tools to use on its own, and orchestrating how to complete tasks step by step, MCP acts as a highly practical bridge.
+
+Different usage scenarios range from:
+
+1. Traditional AI Agents using MCP interfaces to call large external tools while retaining portability and maintainability.
+2. Creating more autonomous, iterative Agentic AI systems that can grow in supported functionality and complexity once the overhead of connecting to external APIs is largely removed through MCP.
+
+# Frameworks for Building Agentic Systems
+
+- [OpenAI Agents SDK](https://github.com/openai/openai-agents-python)
+
+- [LangGraph](https://langchain-ai.github.io/langgraph/) from LangChain;
+
+- Amazon Bedrock's [AI Agent framework](https://aws.amazon.com/bedrock/agents/);
+
+- [Rivet](https://rivet.ironcladapp.com/), a drag and drop GUI LLM workflow builder; and
+
+- [Vellum](https://www.vellum.ai/), another GUI tool for building and testing complex workflows.
+
+# When and When Not to Use Agentic AI
+
+## When to Use Agentic AI
+
+- Use Agentic AI for tasks that are complex and cannot be predefined step by step. It can dynamically plan its own solutions, for example editing multiple files in a complex software engineering task.
+- It also excels in environments requiring high autonomy and decision-making, such as self-driving cars that must adapt to changing traffic.
+- Its ongoing learning, such as reinforcement learning, allows it to adapt to new challenges over time. This is valuable in financial trading systems that need to adjust strategies based on market fluctuations.
+- Agentic AI is suitable for coordinating multiple tasks and integrating data from different sources, for example, enterprise-grade supply chain management.
+- It is useful when large-scale data analysis or complex reasoning is required, such as in medical diagnosis or cybersecurity.
+- It is beneficial if the AI needs to autonomously decide when and how to invoke tools, for instance in a tax assistant that checks updated tax rules, analyzes financial statements, and generates reports.
+- It is also helpful in iterative approaches where feedback can gradually enhance results, as in an Evaluator-Optimizer workflow for multi-round searching.
+
+## When Not to Use Agentic AI
+
+• If the task is straightforward, well-defined, and highly repetitive, a simpler AI Agent often suffices. This approach offers clearer reliability and lower complexity, such as a customer support chatbot solving frequent inquiries.  
+• If highly predictable, consistent behavior is needed, rule-based approaches might be better. Agentic AI’s autonomy can sometimes introduce unpredictability.  
+• Where latency and cost are paramount, Agentic AI—because of its multiple steps, tool calls, and complex reasoning—may be more expensive and slower. A single LLM call or a simpler method could be more optimal.  
+• If there is no need for complex decisions or autonomy, standard AI Agents or simpler workflows can handle tasks like setting reminders or playing music.  
+• If a use case requires strict interpretability and transparency, an Agentic AI may be less straightforward to inspect. In sensitive domains such as healthcare or law, it is necessary to ensure the system’s planning is auditable.  
+• If there is insufficient infrastructure, data integration, or continuous oversight in place, implementing Agentic AI can be risky. A more robust operating environment is needed.  
+• If ethical or safety concerns have not been adequately addressed, caution is advised, given the responsibilities and data privacy issues that come with high-autonomy AI.  
+• If simpler LLM augmentation (such as retrieval or context-based approaches) can already meet needs, it is often better to start with that before scaling up to a fully multi-step Agentic approach.
+
+In essence, the decision hinges on task complexity, the need for autonomy and decision-making, and concerns around cost, latency, predictability, and explainability. When flexibility, learning ability, and advanced problem-solving are critical, Agentic AI has great potential. But for tasks that demand simplicity, reliability, and low overhead, or for settings where oversight must be very strict, using simpler approaches is often wiser. Always weigh these considerations carefully and ensure oversight and safety measures are in place.
+
+# Future Directions and Research Challenges
+
+Current implementations of Agentic AI and MCP have enormous potential in engineering, yet several questions remain. First, higher autonomy raises concerns about safety and controllability. If an agent can read or write sensitive data and push code, proper sandboxing and guardrails are essential to reduce errors or malicious behavior. Second, it remains to be seen if the MCP specification can become an industry-standard universal protocol; competing private versions might undermine its initial goal of cross-platform compatibility.
+
+As Agentic AI solutions become more prevalent in enterprises, delineating responsibility between humans and AI, as well as clarifying who makes final decisions, will lead to legal and social debates. Engineers should follow these discussions closely. Beyond technology, data privacy, fairness, and ethical risk are all key considerations when building next-generation AI systems.
+
+# Insights for Engineers
+
+We see AI evolving from controlled executors to systems capable of exploration and planning. For engineers, this is not just a technical leap but also a shift in mindset. To develop robust and reusable intelligent agent systems, deep expertise in LLMs is imperative, but so is designing safeguard mechanisms, rigorous testing approaches, and standardized tool interfaces.
+
+As MCP matures, Agentic AI will likely interact with a broader range of external resources and services, enabling more flexible workflows and faster digitization across diverse industries. Nevertheless, given the explosive nature of these technologies, maintaining pragmatism, controllability, security, and ethics will always be vital for any engineer building these new-generation AI systems.
+
+# Key Takeaways
+
+• AI Agents are software programs engineered to perform specific tasks within defined boundaries by sensing their environment, processing information, and taking actions. They typically rely on rules or machine learning models, making them suitable for repetitive, clearly defined tasks like customer service chatbots or schedule assistants.  
+• Agentic AI goes a step further, capable of planning, decision-making, and executing complex, multi-stage tasks without continuous human intervention. It not only responds to immediate inputs but also pursues long-term goals, learning and adapting over time.  
+• Compared with AI Agents, Agentic AI has higher autonomy, more advanced decision-making, and broader learning capacity. While Agents are excellent at repeatable functions, Agentic AI thrives in settings requiring adaptive planning and learning.  
+• Agentic AI can boost productivity, reduce cost, and encourage innovation. Yet it poses challenges related to complexity, ethics, safety, and the need for human oversight.  
+• Building Agentic systems should start from simple composable patterns, emphasizing simplicity and transparency. Complexity should only increase when simpler solutions are insufficient.  
+• Model Context Protocol (MCP) is a standard designed to let AI models connect to external data and tools seamlessly, similar to how a Type-C port provides a universal interface.  
+• Good use cases for Agentic AI: complex open-ended issues that cannot be pre-scripted, areas requiring decision-making and long-term autonomy, continuous learning, or data integration from multiple sources, plus scenarios involving iterative feedback.  
+• Unsuitable cases: simple, repetitive tasks needing high predictability; latency- or cost-critical contexts; places where interpretability is absolutely required; or where a simpler solution already suffices.  
+• Always weigh potential gains against the added complexity, overhead, and risk of Agentic AI. Evaluate your monitoring and safety setup before adopting high-autonomy solutions.
+
+# Ref
+
+- [Antropic - agentic ai](https://www.anthropic.com/engineering/building-effective-agents)
+
+- [Model Context Protocol doc](https://modelcontextprotocol.io/introduction)
+
+- [fastmcp - Pythonic way to build Model Context Protocol servers ](https://github.com/jlowin/fastmcp)
+
+- <https://medium.com/@elisowski/ai-agents-vs-agentic-ai-whats-the-difference-and-why-does-it-matter-03159ee8c2b4>
+
+- <https://www.anthropic.com/news/model-context-protocol>
+
+- [ai agent vs agentic ai](https://www.linkedin.com/pulse/understanding-agentic-ai-vs-agents-anshuman-jha-zpsgc/)
+
+- [OpenTools | The API for LLM tool use](https://opentools.com)
