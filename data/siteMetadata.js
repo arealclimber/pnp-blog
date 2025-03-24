@@ -4,7 +4,7 @@ const siteMetadata = {
   author: 'Shirley',
   headerTitle: 'Progress, not Perfection',
   description: '思想試驗場',
-  language: 'zh-tw',
+  language: 'en-us',
   theme: 'dark', // system, dark or light
   siteUrl: 'https://blog.arealclimber.me',
   siteRepo: 'https://github.com/arealclimber/pnp-blog',
@@ -19,7 +19,7 @@ const siteMetadata = {
   linkedin: 'https://www.linkedin.com/in/shirley-chang-334a04124/',
   threads: 'https://www.threads.net/@l.earnc',
   // instagram: 'https://www.instagram.com',
-  locale: 'zh-TW',
+  locale: 'en-us',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
