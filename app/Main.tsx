@@ -22,7 +22,6 @@ export default function Home({ posts }) {
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((post) => {
             const { slug, date, title, summary, tags, readingTime } = post
-            console.log('post in main', post)
             return (
               <li key={slug} className="py-12">
                 <article>
@@ -70,7 +69,7 @@ export default function Home({ posts }) {
                           className="text-primary-500 hover:text-primary-600 dark:text-primary-300 dark:hover:text-primary-400"
                           aria-label={`Read more: "${title}"`}
                         >
-                          閱讀更多 &rarr;
+                          read more &rarr;
                         </Link>
                       </div>
                     </div>
@@ -88,7 +87,7 @@ export default function Home({ posts }) {
             className="text-primary-500 hover:text-primary-600 dark:text-primary-300 dark:hover:text-primary-400"
             aria-label="All posts"
           >
-            所有文章 &rarr;
+            All posts &rarr;
           </Link>
         </div>
       )}
