@@ -1,5 +1,9 @@
 const timelineItems = [
   {
+    date: '2025/03/14',
+    action: 'Shared my AI competition experience online for 1 hr in English',
+  },
+  {
     date: '2024/11/15',
     action: 'Won the 2024 AIGO competition and represented the team to receive the award',
   },
