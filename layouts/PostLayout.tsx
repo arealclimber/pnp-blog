@@ -1,3 +1,4 @@
+'use client'
 import { formatDate } from 'pliny/utils/formatDate'
 import { ReactNode } from 'react'
 import { CoreContent } from 'pliny/utils/contentlayer'
@@ -41,7 +42,6 @@ export default function PostLayout({
   toc,
 }: LayoutProps) {
   const { filePath, path, slug, date, title, tags, readingTime, lastmod } = content
-  console.log('content in PostLayout', content)
   const basePath = path.split('/')[0]
 
   return (
