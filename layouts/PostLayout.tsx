@@ -12,6 +12,7 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import FloatingTOC, { TOCItem } from '@/components/FloatingTOC'
+import ReadingProgressBar from 'app/components/ReadingProgressBar'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -46,6 +47,7 @@ export default function PostLayout({
 
   return (
     <SectionContainer>
+      <ReadingProgressBar />
       <ScrollTopAndComment />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
