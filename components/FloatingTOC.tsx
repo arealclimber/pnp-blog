@@ -19,16 +19,13 @@ export default function FloatingTOC({ toc }: FloatingTOCProps) {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '0px 0px -20% 0px', // 優化檢測，排除頁面底部20%區域
-      threshold: 0.2, // 當章節20%進入視窗時觸發，提高靈敏度
+      rootMargin: '0px 0px -50% 0px', // Optimize detection by excluding 50% of the bottom area of the viewport
+      threshold: 0.5, // Trigger when 50% of the section enters the viewport for better sensitivity
     }
-
-    console.log('observerOptions', observerOptions)
 
     const observerCallback: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          console.log('元素進入視窗:', entry.target.id)
           setActiveId(entry.target.id)
         }
       })
@@ -36,35 +33,37 @@ export default function FloatingTOC({ toc }: FloatingTOCProps) {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions)
 
-    // 為每個章節元素建立監控
-    console.log(
-      '設置監控的TOC項目:',
-      toc.map((item) => item.value)
-    )
+    // Set up monitoring for each section element
     toc.forEach((item) => {
-      // 嘗試找出元素，首先嘗試直接使用 value，然後嘗試轉換為小寫並使用 slug
+      // Try to find the element, first using value directly, then try using the slug form
       let element = document.getElementById(item.value)
 
-      // 如果沒找到元素，嘗試使用 URL（可能包含標題的 slug 形式）
+      // If element not found, try using URL (which may contain the slugified form of the heading)
       if (!element && item.url) {
-        // 去除 URL 中的 # 前綴獲取 ID
+        // Remove the # prefix from URL to get the ID
         const urlId = item.url.replace(/^#/, '')
-        console.log('嘗試通過 URL 查找元素:', urlId)
         element = document.getElementById(urlId)
       }
 
       if (element) {
-        console.log('找到元素並設置監控:', element.id)
         observer.observe(element)
       } else {
-        console.warn('找不到元素:', item.value, '嘗試過的 URL:', item.url)
+        console.warn('Element not found:', item.value, 'Tried URL:', item.url)
       }
     })
 
-    // 清除監控
+    // Clean up monitoring
     return () => {
       toc.forEach((item) => {
-        const element = document.getElementById(item.value)
+        // Try to find the element using the same approach as when setting up
+        let element = document.getElementById(item.value)
+
+        // If element not found, try using URL
+        if (!element && item.url) {
+          const urlId = item.url.replace(/^#/, '')
+          element = document.getElementById(urlId)
+        }
+
         if (element) {
           observer.unobserve(element)
         }
@@ -121,13 +120,8 @@ export default function FloatingTOC({ toc }: FloatingTOCProps) {
     </svg>
   )
 
-  // 在組件渲染時檢查當前的 activeId
-  useEffect(() => {
-    console.log('當前活動ID:', activeId)
-  }, [activeId])
-
   return (
-    <nav className="fixed right-0 top-1/3 z-50 max-h-[80vh] max-w-[50vw] overflow-y-auto border border-gray-200 bg-white p-2 opacity-90 shadow-lg dark:border-gray-700 dark:bg-gray-900 md:max-w-[25vw]">
+    <nav className="fixed right-0 top-1/2 z-50 max-h-[80vh] -translate-y-1/2 transform overflow-y-auto border border-gray-200 bg-white p-2 opacity-90 shadow-lg dark:border-gray-700 dark:bg-gray-900 md:max-w-[25vw] lg:max-w-[20vw]">
       <div className="flex items-center justify-between gap-3">
         <p className={`${isCollapsed ? 'hidden' : 'block text-start font-semibold'}`}>
           Table of Contents
@@ -145,7 +139,7 @@ export default function FloatingTOC({ toc }: FloatingTOCProps) {
             {toc.map((item) => {
               // If the url ends with a number (e.g. -4), remove it
               const cleanedUrl = item.url.replace(/-\d+$/, '')
-              // 獲取用於比較的 ID：如果 URL 存在就使用 URL 中的 ID，否則使用 value
+              // Get the ID for comparison: if URL exists, use the ID from the URL, otherwise use value
               const itemId = item.url ? item.url.replace(/^#/, '') : item.value
 
               return (
@@ -161,7 +155,7 @@ export default function FloatingTOC({ toc }: FloatingTOCProps) {
                   <a
                     href={cleanedUrl}
                     className="block truncate hover:underline"
-                    onClick={() => console.log('點擊目錄項目:', item.value, 'URL:', cleanedUrl)}
+                    onClick={() => console.log('TOC item clicked:', item.value, 'URL:', cleanedUrl)}
                   >
                     {item.value}
                   </a>
