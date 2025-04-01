@@ -69,7 +69,7 @@ export default function Home({ posts }) {
                           className="text-primary-500 hover:text-primary-600 dark:text-primary-300 dark:hover:text-primary-400"
                           aria-label={`Read more: "${title}"`}
                         >
-                          read more &rarr;
+                          Read more &rarr;
                         </Link>
                       </div>
                     </div>
