@@ -46,7 +46,7 @@ export function VerticalTimeline({ items }: VerticalTimelineProps) {
         >
           <div className="order-1 w-5/12"></div>
           <div
-            className={`z-20 order-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full shadow-xl transition-colors duration-150 ${
+            className={`z-0 order-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full shadow-xl transition-colors duration-150 ${
               hoveredIndex === index ? 'bg-sky-300' : 'bg-gray-800 dark:bg-gray-200'
             }`}
             onMouseEnter={() => setHoveredIndex(index)}
