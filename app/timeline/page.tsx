@@ -1,6 +1,12 @@
 import TimelineSection from '@/components/TimelineSection'
+import { genPageMetadata } from 'app/seo'
 import Link from 'next/link'
 import React from 'react'
+
+export const metadata = genPageMetadata({
+  title: 'Timeline',
+  description: 'Record my experience based on when it happened',
+})
 
 const Page = () => {
   return (

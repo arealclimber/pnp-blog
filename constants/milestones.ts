@@ -51,15 +51,15 @@ const timelineItems = [
   },
   {
     date: '2022/08/31',
-    action: 'Started having English oral sessions with foreigners daily',
+    action: 'Started having English oral sessions with foreigners daily (still ongoing)',
   },
   {
     date: '2022/06/xx',
-    action: 'Graduated from university and get the financial degree',
+    action: "Earned a bachelor's in finance",
   },
   {
     date: '2022/03/06 🎉',
-    action: 'Publish my first English technology article on Medium',
+    action: 'Publish my first English tech article on Medium',
   },
   {
     date: '2022/02/03',
