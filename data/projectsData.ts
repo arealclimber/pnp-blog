@@ -10,13 +10,13 @@ const projectsData: Project[] = [
     title: 'Server Swarm',
     description: `A clusters of servers that are connected to each other. Build the structure of prod and dev CI/CD pipeline.`,
     // imgSrc: '/static/images/default-project.jpeg',
-    // href: '',
+    href: 'https://github.com/CAFECA-IO/ServerSwarm',
   },
   {
     title: 'AI feature in English speaking',
     description: `Multi-speaker voice recognition and LLM integration in English conversation.`,
     // imgSrc: '/static/images/default-project.jpeg',
-    // href: '',
+    href: 'https://www.linkedin.com/posts/shinfuchen1989_aileijzbikwjpujnvleohxejpxkvinxgndclgd-ai-activity-7266367655236771840-38yY?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB7C1NgBJl_t22ec0GYJXsKowQJaJ48cCgY',
   },
   {
     title: 'iSunFA',
@@ -40,13 +40,13 @@ const projectsData: Project[] = [
     title: 'NFT Marketplace',
     description: `A NFT Marketplace to buy and sell NFTs.`,
     // imgSrc: '/static/images/default-project.jpeg',
-    // href: '',
+    href: 'https://github.com/arealclimber/nft-playground',
   },
   {
     title: 'NFT Minting Dapp',
     description: `A NFT Minting Dapp to mint certain collections of NFTs.`,
     // imgSrc: '/static/images/default-project.jpeg',
-    // href: '',
+    href: 'https://github.com/arealclimber/NFT-minting-dapp',
   },
   // {
   //   title: 'A Search Engine',
