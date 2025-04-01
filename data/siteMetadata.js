@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'Progress, not Perfection',
   author: 'Shirley',
   headerTitle: 'Progress, not Perfection',
-  description: '思想試驗場',
+  description: 'Take it with a grain of salt',
   language: 'en-us',
   theme: 'dark', // system, dark or light
   siteUrl: 'https://blog.arealclimber.me',
@@ -16,7 +16,7 @@ const siteMetadata = {
   twitter: 'https://x.com/arealclimber',
   // facebook: 'https://facebook.com',
   // youtube: 'https://youtube.com',
-  linkedin: 'https://www.linkedin.com/in/shirley-chang-334a04124/',
+  linkedin: 'https://www.linkedin.com/in/arealclimber/',
   threads: 'https://www.threads.net/@l.earnc',
   // instagram: 'https://www.instagram.com',
   locale: 'en-us',
