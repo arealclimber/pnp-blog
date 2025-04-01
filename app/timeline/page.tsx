@@ -20,11 +20,11 @@ const Page = () => {
             </div>
             <div>
               {' '}
-              <Link href="/projects" className="inline-block">
+              {/* <Link href="/projects" className="inline-block">
                 <p className="text-red-700 underline underline-offset-4 hover:opacity-80 dark:text-red-400">
                   Professional Projects
                 </p>
-              </Link>
+              </Link> */}
             </div>
           </div>
           <div className="mt-10">
