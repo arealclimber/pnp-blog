@@ -38,7 +38,7 @@ const projectsData: Project[] = [
   },
   {
     title: 'Report Tool',
-    description: `A report generator leveraging GitHub issues and browser-side IndexedDB.`,
+    description: `A simple report generator leveraging GitHub issues and IndexedDB.`,
     // imgSrc: '/static/images/default-project.jpeg',
     href: 'https://report-tool-arealclimber.vercel.app',
   },
