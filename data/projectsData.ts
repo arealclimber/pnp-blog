@@ -37,6 +37,12 @@ const projectsData: Project[] = [
     href: 'https://tidebit-defi.com',
   },
   {
+    title: 'Report Tool',
+    description: `A report generator leveraging GitHub issues and browser-side IndexedDB.`,
+    // imgSrc: '/static/images/default-project.jpeg',
+    href: 'https://report-tool-arealclimber.vercel.app',
+  },
+  {
     title: 'NFT Marketplace',
     description: `A NFT Marketplace to make, buy and sell NFTs.`,
     // imgSrc: '/static/images/default-project.jpeg',
