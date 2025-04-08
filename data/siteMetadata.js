@@ -13,12 +13,13 @@ const siteMetadata = {
   // mastodon: 'https://mastodon.social/@mastodonuser',
   // email: 'address@yoursite.com',
   github: 'https://github.com/arealclimber',
-  twitter: 'https://x.com/arealclimber',
+  // twitter: 'https://x.com/arealclimber',
   // facebook: 'https://facebook.com',
   // youtube: 'https://youtube.com',
   linkedin: 'https://www.linkedin.com/in/arealclimber/',
-  threads: 'https://www.threads.net/@l.earnc',
-  // instagram: 'https://www.instagram.com',
+  // threads: 'https://www.threads.net/@l.earnc',
+  // instagram: 'https://www.instagram.com/l.earnc',
+  medium: 'https://medium.com/@arealclimber',
   locale: 'en-us',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
