@@ -8,21 +8,27 @@ interface Project {
 const projectsData: Project[] = [
   {
     title: 'Server Swarm',
-    description: `A clusters of servers that are connected to each other. Build the structure of prod and dev CI/CD pipeline.`,
+    description: `Integration of accounting software with Docker Compose, full-stack support, automated deployment, multi-service hosting via Nginx, and Ollama AI integration.`,
     // imgSrc: '/static/images/default-project.jpeg',
     href: 'https://github.com/CAFECA-IO/ServerSwarm/tree/develop',
   },
   {
     title: 'AI feature in English speaking',
-    description: `Multi-speaker voice recognition (STT) and LLM integration in English conversation.`,
+    description: `Multi-speaker voice recognition (STT), emotional analysis and LLM integration in English conversation.`,
     // imgSrc: '/static/images/default-project.jpeg',
     href: 'https://www.linkedin.com/in/arealclimber/details/honors/',
   },
   {
     title: 'iSunFA',
-    description: `Database migration and accounting-related frontend and backend development.`,
+    description: `Accounting-related frontend and backend development.`,
     // imgSrc: '/static/images/default-project.jpeg',
     href: 'https://isunfa.com',
+  },
+  {
+    title: 'FAITH',
+    description: `Chatbot user interface.`,
+    // imgSrc: '/static/images/default-project.jpeg',
+    href: 'https://faith.isunfa.com',
   },
   {
     title: 'BAIFA',
