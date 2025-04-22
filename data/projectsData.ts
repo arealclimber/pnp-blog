@@ -20,7 +20,7 @@ const projectsData: Project[] = [
   },
   {
     title: 'AI feature in English speaking',
-    description: `Multi-speaker voice recognition (STT), emotional analysis and LLM integration in English talk.`,
+    description: `Multi-speaker voice recognition (STT), emotional analysis and LLM integration in English conversation.`,
     // imgSrc: '/static/images/default-project.jpeg',
     href: 'https://www.linkedin.com/in/arealclimber/details/honors/',
   },
