@@ -9,7 +9,7 @@ const projectsData: Project[] = [
   {
     title: 'Personal and technical blog',
     description:
-      'A blog website that was started from a template and customized with various features.',
+      'A blog originally built from a template, upgraded with various features, and integrated with CI/CD.',
     href: 'https://github.com/arealclimber/pnp-blog',
   },
   {
