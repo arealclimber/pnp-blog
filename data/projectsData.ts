@@ -7,14 +7,20 @@ interface Project {
 
 const projectsData: Project[] = [
   {
+    title: 'Personal and technical blog',
+    description:
+      'A blog website that was started from a template and customized with various features.',
+    href: 'https://github.com/arealclimber/pnp-blog',
+  },
+  {
     title: 'Server Swarm',
-    description: `Integration of accounting software with Docker Compose, full-stack support, automated deployment, multi-service hosting via Nginx, and Ollama AI integration.`,
+    description: `Integration of accounting software with Docker Compose, full-stack support, LLM (Ollama), automated deployment, multi-service hosting via Nginx.`,
     // imgSrc: '/static/images/default-project.jpeg',
     href: 'https://github.com/CAFECA-IO/ServerSwarm/tree/develop',
   },
   {
     title: 'AI feature in English speaking',
-    description: `Multi-speaker voice recognition (STT), emotional analysis and LLM integration in English conversation.`,
+    description: `Multi-speaker voice recognition (STT), emotional analysis and LLM integration in English talk.`,
     // imgSrc: '/static/images/default-project.jpeg',
     href: 'https://www.linkedin.com/in/arealclimber/details/honors/',
   },
@@ -26,13 +32,13 @@ const projectsData: Project[] = [
   },
   {
     title: 'FAITH',
-    description: `Chatbot user interface.`,
+    description: `Built the chatbot user interface.`,
     // imgSrc: '/static/images/default-project.jpeg',
     href: 'https://faith.isunfa.com',
   },
   {
     title: 'BAIFA',
-    description: `Build the frontend and API of blockchain explorer.`,
+    description: `Built the frontend and API of blockchain explorer.`,
     // imgSrc: '/static/images/default-project.jpeg',
     href: 'https://baifa.io',
   },
@@ -44,7 +50,7 @@ const projectsData: Project[] = [
   },
   {
     title: 'Report Tool',
-    description: `A simple report generator leveraging GitHub issues and IndexedDB.`,
+    description: `A concise report generator leveraging GitHub issues and IndexedDB.`,
     // imgSrc: '/static/images/default-project.jpeg',
     href: 'https://report-tool-arealclimber.vercel.app',
   },

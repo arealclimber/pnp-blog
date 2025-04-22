@@ -1,7 +1,7 @@
 const timelineItems = [
   {
     date: '2025/04/02',
-    action: 'Hosted conversational English session online',
+    action: 'Hosted a virtual meetup conducted in English',
   },
   {
     date: '2025/03/14',
