@@ -7,9 +7,9 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'Personal and technical blog',
+    title: 'PNP (this website)',
     description:
-      'A blog originally built from a template, upgraded with various features, and integrated with CI/CD.',
+      'A blog built from a template, upgraded with various features, and integrated with CI/CD.',
     href: 'https://github.com/arealclimber/pnp-blog',
   },
   {
