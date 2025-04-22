@@ -7,12 +7,6 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'PNP (this website)',
-    description:
-      'A blog built from a template, upgraded with various features, and integrated with CI/CD.',
-    href: 'https://github.com/arealclimber/pnp-blog',
-  },
-  {
     title: 'Server Swarm',
     description: `Integration of accounting software with Docker Compose, full-stack support, LLM (Ollama), automated deployment, multi-service hosting via Nginx.`,
     // imgSrc: '/static/images/default-project.jpeg',
@@ -47,6 +41,12 @@ const projectsData: Project[] = [
     description: `Initiated the development of a Crypto DeFi platform.`,
     // imgSrc: '/static/images/tidebit-defi.svg',
     href: 'https://tidebit-defi.com',
+  },
+  {
+    title: 'PNP (this website)',
+    description:
+      'A blog built from a template, upgraded with various features, and integrated with CI/CD.',
+    href: 'https://github.com/arealclimber/pnp-blog',
   },
   {
     title: 'Report Tool',
