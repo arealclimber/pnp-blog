@@ -121,7 +121,7 @@ export default function FloatingTOC({ toc }: FloatingTOCProps) {
   )
 
   return (
-    <nav className="fixed right-0 top-1/2 z-50 max-h-[80vh] -translate-y-1/2 transform overflow-y-auto rounded-md border border-gray-200 bg-white p-2 opacity-90 shadow-lg dark:border-gray-700 dark:bg-gray-900 max-md:max-w-[50vw] md:max-w-[25vw]">
+    <nav className="fixed right-0 top-1/2 z-50 max-h-[80vh] -translate-y-1/2 transform overflow-y-auto rounded-md border border-gray-200 bg-white p-2 opacity-90 shadow-lg dark:border-gray-700 dark:bg-gray-900 max-md:max-w-[50vw] md:max-w-[20vw]">
       <div className="flex items-center justify-between gap-3">
         <p className={`${isCollapsed ? 'hidden' : 'block text-start font-semibold'}`}>
           Table of Contents
