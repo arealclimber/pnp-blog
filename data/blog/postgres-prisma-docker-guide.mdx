@@ -1,0 +1,257 @@
+---
+title: 'Prisma, PostgreSQL, and Docker: A Practical Guide'
+date: '2025-05-11'
+tags: ['software engineering', 'database', 'docker', 'backend', 'devops']
+draft: false
+summary: 'This is a hands-on article series for developers who want to learn how to set up and manage PostgreSQL in Docker, integrate it with Prisma, and build a reliable and reproducible local development environment. Each part is a complete, standalone tutorial — ideal for future self-reference or onboarding new team members.'
+---
+
+# Why Prisma + PostgreSQL + Docker?
+
+### Introduction
+
+Before diving into code, let’s explore why these tools — Prisma, PostgreSQL, and Docker — make such a powerful stack.
+
+### Why This Stack?
+
+- **PostgreSQL** is an industry-standard, robust, and feature-rich relational database.
+- **Prisma** is a modern, auto-generated ORM for Node.js and TypeScript that simplifies querying, migrations, and modeling.
+- **Docker** helps encapsulate environments and dependencies so everything is reproducible across machines.
+  This combination is powerful for both personal projects and team collaboration. Once set up, your environment is portable and consistent across contributors.
+
+### Use Cases This Series Solves
+
+- Spin up isolated PostgreSQL environments without installing it directly on your machine.
+- Back up and restore DBs across projects.
+- Collaborate with teammates via shared Docker setups.
+- Develop confidently using Prisma to generate database access layers.
+
+### Prerequisites
+
+Make sure you have the following tools installed and properly configured:
+
+1. **Docker Desktop**
+
+- Download from [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
+- After installation, verify:
+
+```bash
+docker -v
+docker info
+```
+
+You should see Docker version info and running system details. 2. **Node.js and npm (or yarn)**
+
+- Download from [https://nodejs.org/](https://nodejs.org/)
+- After installation, verify:
+
+```bash
+node -v
+npm -v
+```
+
+- Alternatively, use `nvm` (Node Version Manager) for better version control: [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
+
+3. **PostgreSQL CLI tools (`psql`, `pg_dump`, `pg_restore`)**
+
+- macOS: install via Homebrew:
+
+```bash
+brew install postgresql
+```
+
+- Verify installation:
+
+```bash
+psql --version
+pg_dump --version
+pg_restore --version
+```
+
+4. **Basic CLI Skills**
+
+- Comfort with Terminal or PowerShell
+- Familiar with editing files like `.env`, `docker-compose.yml`, and `schema.prisma`
+
+5. **Optional but Helpful:**
+
+- GUI tools like [TablePlus](https://tableplus.com/), [pgAdmin](https://www.pgadmin.org/), or Postgres.app for DB inspection
+- Visual Studio Code with Prisma and Docker extensions
+
+---
+
+# Start PostgreSQL in Docker and Keep Your Data Safe
+
+### Why Run PostgreSQL in Docker?
+
+Docker lets you isolate your development database, keeping your host system clean. But if you don’t manage storage properly, your database might disappear when the container shuts down. We’ll cover 3 ways to run PostgreSQL, from ephemeral to persistent.
+
+### Option 1: Ephemeral One-Time Container
+
+Great for quick testing, this container deletes itself when stopped.
+
+```bash
+docker run --rm --publish 5432:5432 \
+-e POSTGRES_HOST_AUTH_METHOD=trust \
+-e POSTGRES_DB=postgres_db \
+-e POSTGRES_USER=username \
+-e POSTGRES_PASSWORD=password \
+postgres
+```
+
+- `--rm`: removes the container after you stop it
+- Use `ctrl+c` to stop the container
+  Useful for throwaway DBs, but not persistent.
+
+### Option 2: Persistent Container Using Docker Volume (Recommended)
+
+This method stores data in a Docker-managed volume.
+
+```bash
+docker volume create pg_data
+docker run -d --name postgres_container \
+--publish 5432:5432 \
+-e POSTGRES_HOST_AUTH_METHOD=trust \
+-e POSTGRES_DB=postgres_db \
+-e POSTGRES_USER=username \
+-e POSTGRES_PASSWORD=password \
+-v pg_data:/var/lib/postgresql/data \
+postgres
+```
+
+- `pg_data` will persist even if the container is removed
+- To restart: `docker start postgres_container`
+- To check volumes: `docker volume ls`
+
+### Option 3: Mount to Local Folder
+
+If you want your DB data visible in the file system (e.g., for backups), you can mount it to a local folder:
+
+```bash
+docker run -d --name postgres_container \
+--publish 5432:5432 \
+-e POSTGRES_HOST_AUTH_METHOD=trust \
+-e POSTGRES_DB=postgres_db \
+-e POSTGRES_USER=username \
+-e POSTGRES_PASSWORD=password \
+-v ~/postgres_data:/var/lib/postgresql/data \
+postgres
+```
+
+- DB files are stored in `~/postgres_data`
+- Be sure to give Docker permission to access this folder on macOS
+- Restart with: `docker start postgres_container`
+
+---
+
+# Backup and Restore PostgreSQL in Docker
+
+### Backing Up the Database with `pg_dump`
+
+Once your PostgreSQL container is running, you may want to back up your DB.
+
+```bash
+pg_dump -U username -h localhost -p 5432 \
+-F c -b -v -f my_backup.dump postgres_db
+```
+
+- `-F c`: custom format (best for restores)
+- `-b`: include large objects
+- `-v`: verbose
+- `-f`: output file
+  Make sure to run this from a terminal that has access to the `pg_dump` binary (usually installed with PostgreSQL or Postgres.app).
+
+### Restoring the Database with `pg_restore`
+
+Ensure the target DB exists:
+
+```bash
+createdb -U username -h localhost -p 5432 postgres_db
+```
+
+Then restore:
+
+```bash
+pg_restore -U username -h localhost -p 5432 \
+-d postgres_db -v --no-owner my_backup.dump
+```
+
+- `--no-owner`: avoids errors when you’re not restoring as the original DB user
+  Useful for migrating data across environments or recovering from mistakes.
+
+---
+
+# Connect Prisma to Dockerized PostgreSQL
+
+### Step 1: Initialize Prisma
+
+Inside your Node.js project:
+
+```bash
+npx prisma init
+```
+
+This creates the Prisma folder and a default schema.
+
+### Step 2: Set the `DATABASE_URL`
+
+In the generated `.env` file:
+
+```env
+DATABASE_URL="postgresql://username:password@localhost:5432/postgres_db"
+```
+
+### Step 3: Define a Model
+
+```prisma
+model User {
+id Int @id @default(autoincrement())
+name String
+email String @unique
+}
+```
+
+### Step 4: Create Migration and Generate Client
+
+```bash
+npx prisma migrate dev --name init
+```
+
+Then, in your code:
+
+```ts
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+await prisma.user.create({
+  data: { name: 'Alice', email: 'alice@example.com' },
+})
+```
+
+Prisma introspects and generates typed clients — extremely useful for maintaining data consistency.
+
+> If Docker container isn't ready, add retry logic or use `wait-for-it.sh` in scripts.
+
+---
+
+# Practical Dev Tips
+
+### Debugging Tips
+
+- Container won’t start? Run `docker logs postgres_container`
+- Can’t connect? Try `psql -U username -h localhost -p 5432 postgres_db`
+- Prisma error? Ensure the DB is up and URL is correct.
+
+### Tools
+
+- Use TablePlus/pgAdmin to visualize tables
+- Use `.env` for environment switching (dev, staging, prod)
+- For hot reload: add a restart script with `nodemon`
+
+### Starting & Stopping Containers
+
+```bash
+docker start postgres_container
+docker stop postgres_container
+```
+
+---
