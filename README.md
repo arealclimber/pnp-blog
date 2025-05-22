@@ -1,5 +1,7 @@
 ![tailwind-nextjs-banner](/public/static/images/twitter-card.png)
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/arealclimber/pnp-blog)
+
 # PNP Blog
 
 A modern blog built with TypeScript, Next.js, Tailwind CSS, and Contentlayer. This blog features a clean design and excellent reading experience.
