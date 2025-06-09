@@ -1,6 +1,7 @@
 {
-  "english": 10,
-  "introspection": 7,
+  "ai": 6,
+  "english": 12,
+  "introspection": 8,
   "software-engineering": 15,
   "database": 1,
   "docker": 3,
@@ -8,7 +9,6 @@
   "devops": 4,
   "introspective": 1,
   "learning": 1,
-  "ai": 5,
   "mandarin": 14,
   "blockchain": 2,
   "": 1,
