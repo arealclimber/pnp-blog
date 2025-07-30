@@ -6,11 +6,45 @@ draft: false
 summary: 'Hands off and stress-free — review Claude Code’s progress every half hour.'
 ---
 
-## Introduction
+## Quick Start: Enable Claude Code YOLO Mode in 2 Steps
 
-If you've been using Claude Code extensively, you've likely encountered the constant stream of permission requests for file edits, command execution, and web searches. While these security measures protect your system from potentially harmful operations, they can significantly interrupt your development flow. What if there was a way to let Claude Code work autonomously while maintaining security? Enter **Development Containers (Dev Containers)** - the solution that enables "YOLO mode" development with Claude Code.
+Want to let Claude Code work autonomously without constant permission requests? Here's how to set it up in just 2 steps:
 
-## What Are Dev Containers?
+### Step 1: Install Dev Containers Extension
+
+Install the **Dev Containers** extension in VS Code:
+
+- Open VS Code
+- Go to Extensions (Ctrl+Shift+X)
+- Search for "Dev Containers"
+- Install the extension by Microsoft (by Anysphere exactly, but if you can't search it, it'll remind you of the correct version after you open the dev container)
+
+### Step 2: Copy the .devcontainer Configuration
+
+1. Visit [dev-container-for-claude-code-yolo](https://github.com/arealclimber/dev-container-for-claude-code-yolo?tab=readme-ov-file)
+2. Copy the appropriate `.devcontainer` folder for your framework:
+   - `nextjs/` for Next.js projects
+   - `python/` for Python projects
+   - Root `.devcontainer/` for general development
+3. Place the `.devcontainer` folder in your project root
+4. Open your project in VS Code
+5. When prompted, click "Reopen in Container"
+
+**That's it!** Claude Code can now work in YOLO mode within the secure container environment.
+
+> **Important:** These configurations are templates. You should customize them based on your specific project needs, including:
+>
+> - Port forwarding for your development servers
+> - Additional VS Code extensions
+> - Environment variables
+> - Package installations
+> - Security firewall rules
+
+---
+
+## Understanding Dev Containers: The Technology Behind the Magic
+
+### What Are Dev Containers?
 
 Development Containers are a standardized way to define complete development environments using Docker containers. They package your development tools, runtime, libraries, and extensions into a reproducible, isolated environment that can run consistently across different machines.
 
@@ -20,7 +54,7 @@ A dev container is defined by:
 - **Dockerfile**: Instructions for building the container image
 - **Additional scripts**: Custom initialization and setup scripts
 
-## The Problem: Security vs. Productivity
+### The Problem: Security vs. Productivity
 
 Claude Code's permission system serves a crucial purpose - preventing potentially destructive operations like:
 
@@ -35,7 +69,7 @@ However, this safety mechanism creates friction during legitimate development ta
 - Running build processes
 - Installing dependencies
 
-## The Solution: Sandboxed Development with Dev Containers
+### The Solution: Sandboxed Development with Dev Containers
 
 Dev containers solve this dilemma by providing a **secure sandbox environment** where Claude Code can operate with full autonomy. Even if something goes wrong, the damage is contained within the container, leaving your host system untouched.
 
