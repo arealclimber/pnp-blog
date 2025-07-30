@@ -6,29 +6,34 @@ draft: false
 summary: 'Hands off and stress-free — review Claude Code’s progress every half hour.'
 ---
 
-## Quick Start: Enable Claude Code YOLO Mode in 2 Steps
+## Quick Start: Enable Claude Code YOLO Mode Safely in 3 Steps
 
-Want to let Claude Code work autonomously without constant permission requests? Here's how to set it up in just 2 steps:
+Want to let Claude Code work autonomously without constant permission requests? Here's how to set it up in just 3 steps:
 
 ### Step 1: Install Dev Containers Extension
 
 Install the **Dev Containers** extension in VS Code:
 
 - Open VS Code
-- Go to Extensions (Ctrl+Shift+X)
+- Go to Extensions
 - Search for "Dev Containers"
-- Install the extension by Anysphere (Note: If you install the wrong one, VS Code will prompt you to install the correct version when you open the dev container)
+- Install the extension by Anysphere (Note: If you install the Microsoft version, VS Code will prompt you to install the correct version when you open the dev container)
 
 ### Step 2: Copy the .devcontainer Configuration
 
-1. Visit [dev-container-for-claude-code-yolo](https://github.com/arealclimber/dev-container-for-claude-code-yolo?tab=readme-ov-file)
+1. Clone the repo [dev-container-for-claude-code-yolo](https://github.com/arealclimber/dev-container-for-claude-code-yolo?tab=readme-ov-file)
 2. Copy the appropriate `.devcontainer` folder for your framework:
    - `nextjs/` for Next.js projects
    - `python/` for Python projects
-   - Root `.devcontainer/` for general development
 3. Place the `.devcontainer` folder in your project root
 4. Open your project in VS Code
 5. When prompted, click "Reopen in Container"
+
+### Step 3: Run the Claude command
+
+```bash
+claude --dangerously-skip-permissions
+```
 
 **That's it!** Claude Code can now work in YOLO mode within the secure container environment.
 
