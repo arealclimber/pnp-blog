@@ -1,5 +1,6 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "bitoAI.codeCompletion.enableAutoCompletion": false
+  "bitoAI.codeCompletion.enableAutoCompletion": false,
+  "editor.formatOnSave": false
 }
