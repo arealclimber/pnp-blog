@@ -1,5 +1,5 @@
 import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
-import { writeFileSync } from 'fs'
+import { writeFileSync, readFileSync } from 'fs'
 import readingTime from 'reading-time'
 import { slug } from 'github-slugger'
 import path from 'path'
@@ -89,6 +89,19 @@ function createSearchIndex(allBlogs) {
   }
 }
 
+function fixContentlayerImports() {
+  const filePath = path.join(process.cwd(), '.contentlayer/generated/index.mjs')
+  try {
+    let content = readFileSync(filePath, 'utf-8')
+    // Replace 'assert' with 'with' in import assertions for Node.js 22+ compatibility
+    content = content.replace(/assert\s*\{\s*type:\s*'json'\s*\}/g, "with { type: 'json' }")
+    writeFileSync(filePath, content, 'utf-8')
+    console.log('Fixed contentlayer import assertions (assert → with)')
+  } catch (error) {
+    console.error('Error fixing contentlayer imports:', error.message)
+  }
+}
+
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
   filePathPattern: 'blog/**/*.mdx',
@@ -173,6 +186,7 @@ export default makeSource({
     ],
   },
   onSuccess: async (importData) => {
+    fixContentlayerImports()
     const { allBlogs } = await importData()
     createTagCount(allBlogs)
     createSearchIndex(allBlogs)
